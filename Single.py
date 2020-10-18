@@ -45,3 +45,4 @@ a4 = Singe_sec()
 print(id(a3))
 print(id(a4))
 
+#单例模式的应用场景，待补充
