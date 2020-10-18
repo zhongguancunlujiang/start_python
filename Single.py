@@ -14,9 +14,30 @@ class Single(object):
                     Single._instance = object.__new__(cls)
         return Single._instance
 
-#第二种 待完善
-
 a1 = Single()
 a2 = Single()
 print(id(a1))
 print(id(a2))
+
+#第二种 利用python装饰器特性，面试中常考
+def wrapper(cls):
+    instance = {} #用来存放实例的字典
+    _lock = threading.Lock()
+    def inner(*args, **kwargs):
+        if cls not in instance:
+            with _lock:
+                if cls not in instance:
+                    instance[cls] = cls(*args, **kwargs)
+        return instance[cls]
+    return inner
+
+@wrapper
+class Singe_sec(object):
+    def __init__(self):
+        pass
+
+a3 = Singe_sec()
+a4 = Singe_sec()
+print(id(a3))
+print(id(a4))
+
