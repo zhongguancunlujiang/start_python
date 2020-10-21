@@ -4,6 +4,6 @@
 #1、字典推导式
 #a、常考点：一句话实现字典的kev、value交换
 temp_dict = {"cheng": 100, "du":200, "ok":300}
-print(temp_dict)
+#采用推导式即可
 temp_dict = { value:key for key, value in temp_dict.items() }
 print(temp_dict)
